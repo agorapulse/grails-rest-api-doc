@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="navbar-header"><a class="navbar-brand" href="#">RestApiDoc</a></div>
                 <form class="navbar-form navbar-left">
-                    <input id="jsondocfetch" class="form-control" type="text" placeholder="Insert here the RestApiDoc URL" autocomplete="off">
+                    <input id="jsondocfetch" class="form-control" type="text" placeholder="Insert here the RestApiDoc URL" autocomplete="off" value="${params.doc_url}">
                     <button id="getDocButton" type="button" class="btn btn-default">Get documentation</button>
                 </form>
             </div>

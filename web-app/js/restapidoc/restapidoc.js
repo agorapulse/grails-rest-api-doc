@@ -45,7 +45,7 @@ function printResponse(data, res, url) {
     $("#responseStatus").text(res.status);
     $("#responseHeaders").text(res.getAllResponseHeaders());
     $("#requestURL").text(url);
-    $('#testButton').text('reset');
+    $('#testButton').text('Submit');
     $("#resInfo").show();
 }
 
@@ -142,7 +142,7 @@ function fetchdoc(jsondocurl) {
                                     }
                                 });
 
-                                $('#testButton').text('loading');
+                                $('#testButton').text('Loading...');
 
                                 var requestData;
                                 var cType;
@@ -213,23 +213,8 @@ function fetchdoc(jsondocurl) {
 }
 
 $(document).ready(function() {
-    var parseQueryString = function() {
-        var vars = [], hash;
-        var q = document.URL.split('?')[1];
-        if(q != undefined){
-            q = q.split('&');
-            for(var i = 0; i < q.length; i++){
-                hash = q[i].split('=');
-                vars.push(hash[1]);
-                vars[hash[0]] = hash[1];
-            }
-        }
-        return vars;
-    }
-
-    var parameters = parseQueryString();
-    if (parameters['doc_url']) {
-        $('#jsondocfetch').attr('value', parameters['doc_url']);
+    var docUrl = $('#jsondocfetch').attr('value');
+    if (docUrl && docUrl != '') {
         $('#getDocButton').click();
     }
 

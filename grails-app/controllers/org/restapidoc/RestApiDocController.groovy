@@ -1,30 +1,26 @@
 package org.restapidoc
 
-import grails.converters.JSON
-import grails.util.Holders
-import org.apache.commons.io.IOUtils
-import org.restapidoc.pojo.RestApiObjectDoc
-import org.restapidoc.utils.BuildPathMap
-import org.restapidoc.utils.JSONDocUtilsLight
-import org.restapidoc.utils.MappingRules
-
-
 class RestApiDocController {
+
     def grailsApplication
-    
+    def grailsLinkGenerator
+
     def index() {
-    	def layout = grailsApplication.mergedConfig.grails.plugins.restapidoc.layout
-    	[layout: layout]
+        def layout = grailsApplication.mergedConfig.grails.plugins.restapidoc.layout
+        if (!params.doc_url) {
+            params.doc_url =  grailsLinkGenerator.link(controller: 'restApiDoc', action: 'json', absolute: true)
+        }
+        [layout: layout]
     }
 
-    def api() {
+    def json() {
         def input
         try {
             input = servletContext.getResourceAsStream(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFileReading)
-            render(input.text)
+            render(input?.text ?: '')
         }
         finally {
-            input.close()
+            input?.close()
         }
 
     }

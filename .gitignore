@@ -1,6 +1,17 @@
-target/
-out/
-grails-rest-api-doc-*.zip
-grails-rest-api-doc-*.zip.sha1
-.idea/workspace.xml
-.idea/tasks.xml
+# Grails files
+/grails-rest-api-*.zip
+/grails-rest-api-*.zip.sha1
+/plugin.xml
+/target
+/target-eclipse
+/web-app
+
+# IDE files
+.classpath
+.idea/
+.project
+.settings
+
+*.iml
+/out
+.DS_Store

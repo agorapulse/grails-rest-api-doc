@@ -45,7 +45,7 @@ function printResponse(data, res, url) {
     $("#responseStatus").text(res.status);
     $("#responseHeaders").text(res.getAllResponseHeaders());
     $("#requestURL").text(url);
-    $('#testButton').button('reset');
+    $('#testButton').text('reset');
     $("#resInfo").show();
 }
 
@@ -142,7 +142,7 @@ function fetchdoc(jsondocurl) {
                                     }
                                 });
 
-                                $('#testButton').button('loading');
+                                $('#testButton').text('loading');
 
                                 var requestData;
                                 var cType;

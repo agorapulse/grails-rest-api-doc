@@ -6,10 +6,10 @@ grails {
 
             docVersion = "0.1.1"
 
-            basePath = "Fill with basePath config" //"http://localhost:8080/RestApiDoc" //app.name
+            basePath = "" //"http://localhost:8080/RestApiDoc" //app.name
 
-            outputFileGeneration = "restapidoc.json"
-            outputFileReading = "restapidoc.json"
+            outputFileGeneration = "web-app/WEB-INF/restapidoc.json"
+            outputFileReading = "/WEB-INF/restapidoc.json"
             customClassName = null  //"org.restapidoc.CustomResponseDoc"
 
             defaultFormat = "json"
@@ -69,7 +69,7 @@ grails {
 
             packageToScan = null
 
-            layout = "main"
+            layout = "restapidoc"
         }
     }
 }

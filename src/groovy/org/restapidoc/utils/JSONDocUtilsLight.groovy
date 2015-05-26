@@ -29,6 +29,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
     def DEFAULT_PARAMS_QUERY_ALL
     def DEFAULT_PARAMS_QUERY_SINGLE
     def DEFAULT_PARAMS_QUERY_MULTIPLE
+    def DEFAULT_HEADERS
     def DOMAIN_OBJECT_FIELDS
 
 
@@ -50,6 +51,8 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         DEFAULT_PARAMS_QUERY_ALL = grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultParamsQueryAll
         DEFAULT_PARAMS_QUERY_SINGLE = grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultParamsQuerySingle
         DEFAULT_PARAMS_QUERY_MULTIPLE = grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultParamsQueryMultiple
+        DEFAULT_HEADERS = grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultHeaders
+
     }
 
 //    
@@ -177,8 +180,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                     actionWithPathParam = "/" + it.value
                 }
             }
-            println "controllerName=$controllerName"
-            println "actionWithPathParam=$actionWithPathParam"
 
             String format = extension ? ".${DEFAULT_FORMAT_NAME}" : ""
 
@@ -186,8 +187,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         }
 
         path = extension ? path.replace(DEFAULT_FORMAT_NAME, extension) : path
-
-        println  "annotation.verb()=${annotation.verb()}"
 
         if (annotation.verb() != RestApiVerb.NULL) {
             //verb is defined in the annotation
@@ -210,9 +209,16 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         RestApiMethodDoc apiMethodDoc = RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiMethod.class), path, verb, DEFAULT_TYPE);
         apiMethodDoc.methodName = method.name
 
+        def headers = []
         if (method.isAnnotationPresent(RestApiHeaders.class)) {
-            apiMethodDoc.setHeaders(RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiHeaders.class)));
+            headers = RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiHeaders.class))
         }
+
+        DEFAULT_HEADERS.each {
+            headers.add(new RestApiHeaderDoc(it.name, it.description))
+        }
+
+        apiMethodDoc.setHeaders(headers)
 
         def urlParams = []
         def queryParameters = []

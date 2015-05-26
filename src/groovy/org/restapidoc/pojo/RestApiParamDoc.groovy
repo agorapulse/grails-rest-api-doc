@@ -75,8 +75,7 @@ public class RestApiParamDoc {
         return JSONDocUtils.getObjectNameFromAnnotatedClass(parameter);
     }
 
-    public
-    static RestApiParamDoc buildFromAnnotation(RestApiParam annotation, String type, RestApiParamType paramType) {
+    public static RestApiParamDoc buildFromAnnotation(RestApiParam annotation, String type, RestApiParamType paramType) {
         if (annotation.paramType().equals(paramType)) {
             return new RestApiParamDoc(annotation.name(), annotation.description(), type, String.valueOf(annotation.required()), annotation.allowedvalues(), annotation.allowedEnumValues(), annotation.format());
         }

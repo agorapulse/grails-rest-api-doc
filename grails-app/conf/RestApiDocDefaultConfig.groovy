@@ -67,6 +67,8 @@ grails {
                     //                [name:"offset",description:"Pagination: Offset of first record (default 0 = first record)",type:"int"]
             ]
 
+            defaultHeaders = []
+
             packageToScan = null
 
             layout = "restapidoc"

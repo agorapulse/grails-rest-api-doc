@@ -217,6 +217,16 @@ $(document).ready(function() {
     if (docUrl && docUrl != '') {
         $('#getDocButton').click();
     }
+    else {
+    	// Default to the url of the host server
+    	// Ex. http://.../restApiDoc/?doc_url=http://.../restApiDoc/api#
+    	
+    	// First, strip any special characters or query string; then, add back the controller name
+    	var docURL = document.URL.split('restApiDoc')[0].concat('restApiDoc');
+    	
+    	// Now, build the default URL
+    	window.location = docURL.concat('?doc_url=').concat(docURL).concat('/api#');
+    }
 
     $(document).on("click", "#selectStringParameters", function(event) {
         event.preventDefault();

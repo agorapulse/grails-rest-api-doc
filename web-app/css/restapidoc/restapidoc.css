@@ -1,10 +1,14 @@
-body {
+.rest-api-content {
     padding-top: 60px;
     padding-bottom: 40px;
 }
 
 .sidebar-nav {
     padding: 9px 0;
+}
+
+.navbar-form .form-control {
+    width: 50em;
 }
 
 .GET {

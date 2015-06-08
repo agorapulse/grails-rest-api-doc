@@ -214,23 +214,23 @@ var jl;
                     
                     //repeats the previous command with new
                     //arguments
-                    repeat:function(arguments) {
+                    repeat:function(args) {
                     
                         //check if there is anything to repeat
-                        if (!self.instance.lastCommand || arguments == null) { return; }
+                        if (!self.instance.lastCommand || args == null) { return; }
                         
-                        //get the array of arguments to work with
-                        arguments = framework.util.toArray(arguments);
+                        //get the array of args to work with
+                        args = framework.util.toArray(args);
                             
                         //check if there is a field name has changed, and
-                        //if so, update the arguments to match
-                        if (self.canRepeatCommand(arguments)) {
-                            self.instance.lastField = arguments[0];
-                            arguments = framework.util.select(arguments, null, 1, null);
+                        //if so, update the args to match
+                        if (self.canRepeatCommand(args)) {
+                            self.instance.lastField = args[0];
+                            args = framework.util.select(args, null, 1, null);
                         }
                         
                         //invoke the command now
-                        self.queue(self.instance.lastCommand, arguments);
+                        self.queue(self.instance.lastCommand, args);
                     },
                     
                     //saves a command to evaluate later

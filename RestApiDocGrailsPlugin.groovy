@@ -1,6 +1,6 @@
 class RestApiDocGrailsPlugin {
     // the plugin version
-    def version = "0.6.5.1-agorapulse"
+    def version = "0.6.5.3-agorapulse"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
